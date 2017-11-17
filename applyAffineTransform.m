@@ -18,6 +18,18 @@ function coords = applyAffineTransform(coords,A)
 
 assert(nargin == 2, 'Unexpected number of input arguments.');
 
+if isstruct(coords)
+  if all(isfield(coords, {'paths','dims','vsiz'}))
+    coords = pathProps(coords, 'Coords');      % input: ftrack format
+  elseif all(isfield(coords, {'datatype','count','data'}))
+    coords = coords.data;                      % input: mrtrix format
+  end
+elseif iscell(coords)                          % input: cell array of coords
+  assert(all(cellfun(@isnumeric, coords)));
+else
+  error('Unexpected input argument.');
+end
+
 fmt = 1; % format (of the coords of each path/track): 1 -> n x 3;  2 -> 3 x n
 
 % transpose arrays if necessary
