@@ -49,30 +49,14 @@ switch propname
     end
 
   case 'Coords'
-    props = cell(np, 1);
-    subs = pathProps(p, 'Subscripts');
     if nargin == 3
+      props = pathProps(p, 'Coords');
       A = varargin{1};
-      assert(numel(A) == 16);
-      assert(isequal(abs(diag(A(1:3, 1:3))), p.vsiz(:)));
-      for i = 1:np;
-        nvox = numel(p.paths{i});
-        props{i} = zeros(3, nvox, 'single');
-        for j = 1:nvox
-          x0 = single(subs{i}(1,j));
-          y0 = single(subs{i}(2,j));
-          z0 = single(subs{i}(3,j));
-          props{i}(1,j) = single(A(1,1)*x0 + A(1,2)*y0 + A(1,3)*z0 + A(1,4));
-          props{i}(2,j) = single(A(2,1)*x0 + A(2,2)*y0 + A(2,3)*z0 + A(2,4));
-          props{i}(3,j) = single(A(3,1)*x0 + A(3,2)*y0 + A(3,3)*z0 + A(3,4));
-        end
-      end
+      assert(isequal(size(A), [4 4]));
+      props = applyAffineTransform(props, A);
     else
-      for i = 1:np
-        s = single(subs{i});
-        props{i} ...
-          = single([s(1,:).*p.vsiz(1); s(2,:).*p.vsiz(2); s(3,:).*p.vsiz(3)]);
-      end
+      subs = pathProps(p, 'Subscripts');
+      props = cellfun(@single, subs, 'UniformOutput', false);
     end
 
   case 'Length'
