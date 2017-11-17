@@ -16,6 +16,8 @@ function coords = applyAffineTransform(coords,A)
 %
 %   Author: Kristian Loewe
 
+assert(nargin == 2, 'Unexpected number of input arguments.');
+
 fmt = 1; % format (of the coords of each path/track): 1 -> n x 3;  2 -> 3 x n
 
 % transpose arrays if necessary
