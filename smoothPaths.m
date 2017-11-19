@@ -13,6 +13,16 @@ function xyzp = smoothPaths(p,fac)
 %   structure of the kind returned by READ_MRTRIX_TRACKS. READ_MRTRIX_TRACKS
 %   is part of the MRtrix3 software package (http://www.mrtrix.org).
 %
+%   Example:
+%   p = readPaths('paths.dat');                 % read paths from dat-file
+%   p = filtPaths(p, ...);                      % filter them (optional)
+%   p = smoothPaths(p);                         % smooth them (optional)
+%   h = readImgHdr('image.nii.gz');             % get appropriate header
+%   c = applyAffineTransform(p, h.mat);         % apply transform -> coords
+%   exportPaths(c, 'tracks.tck');               % export to tck-file
+%
+%   See also: READPATHS, PATHPROPS, EXPORTPATHS, FTRACK.
+%
 %   Author: Kristian Loewe
 
 if ~exist('fac','var')

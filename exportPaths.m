@@ -8,12 +8,24 @@ function exportPaths(d,fname)
 %   coordinates C (each cell contains the 3D coordinates of one path) to the
 %   tck-file FNAME.
 %
-%   EXPORTPATHS(T,FNAME) exports the paths in T to the tck-file FNAME,
-%   where T is a structure of the kind returned by READ_MRTRIX_TRACKS. This
-%   is equivalent to using WRITE_MRTRIX_TRACKS(T,FNAME) directly.
+%   EXPORTPATHS(T,FNAME) exports the paths in T to the tck-file FNAME, where T
+%   is a structure of the kind returned by READ_MRTRIX_TRACKS. This is
+%   equivalent to using WRITE_MRTRIX_TRACKS(T,FNAME) directly.
+%   READ_MRTRIX_TRACKS and WRITE_MRTRIX_TRACKS are part of the MRtrix3
+%   software package (http://www.mrtrix.org).
 %
 %   This function depends on the function WRITE_MRTRIX_TRACKS, which is part
 %   part of the MRtrix3 software package (http://www.mrtrix.org).
+%
+%   Example:
+%   p = readPaths('paths.dat');                 % read paths from dat-file
+%   p = filtPaths(p, ...);                      % filter them (optional)
+%   p = smoothPaths(p);                         % smooth them (optional)
+%   h = readImgHdr('image.nii.gz');             % get appropriate header
+%   c = applyAffineTransform(p, h.mat);         % apply transform -> coords
+%   exportPaths(c, 'tracks.tck');               % export to tck-file
+%
+%   See also: READ_MRTRIX_TRACKS, WRITE_MRTRIX_TRACKS, FTRACK.
 %
 %   Author: Kristian Loewe
 

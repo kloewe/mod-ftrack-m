@@ -30,21 +30,21 @@ function res = clustPaths(p,varargin)
 %   CL = CLUSTPATHS(...,'PARAM1',VAL1,'PARAM2',VAL2,...) can be used to
 %   specify additional parameters and their values:
 %
-%      Parameter         Value
-%      ---------         -----
-%      'NumCmpPoints'    Number of comparison points at which the distance of
-%                        two paths is evaluated in addition to their start and
-%                        end points.
+%      Parameter        Value
+%      ---------        -----
+%      'NumCmpPoints'   Number of comparison points at which the distance of
+%                       two paths is evaluated in addition to their start and
+%                       end points.
 %
-%      'MaxDistance'     Maximal euclidian distance between two comparison
-%                        points in mm.
+%      'MaxDistance'    Maximal euclidian distance between two comparison
+%                       points in mm.
 %
-%      'MaxLengthDiff'   Maximal abs. length difference between a path and the
-%                        current cluster centroid relative to the length of
-%                        the centroid path.
+%      'MaxLengthDiff'  Maximal abs. length difference between a path and the
+%                       current cluster centroid relative to the length of
+%                       the centroid path.
 %
-%      'MinClusterSize'  Minimal number of paths per cluster. Clusters with
-%                        less members will not be included in the output.
+%      'MinClusterSize' Minimal number of paths per cluster. Clusters with
+%                       less members will not be included in the output.
 %
 %   Example:
 %   p = readPaths('paths.dat');                 % read paths from dat-file
@@ -54,6 +54,9 @@ function res = clustPaths(p,varargin)
 %   c = applyAffineTransform(p, h.mat);         % apply transform -> coords
 %   cl = clustPaths(c, ...);                    % cluster based on the coords
 %   exportPaths(cl.centroids, 'tracks.tck');    % export to tck-file
+%
+%   See also: READPATHS, FILTPATHS, SMOOTHPATHS, READIMGHDR,
+%   APPLYAFFINETRANSFORM, EXPORTPATHS, FTRACK.
 %
 %   Authors: Kristian Loewe, Joern Kaufmann
 

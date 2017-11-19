@@ -18,6 +18,8 @@ function coords = applyAffineTransform(coords,A)
 %   c = applyAffineTransform(pathProps(p, 'Coords'), h.mat);
 %   exportPaths(c, 'paths.tck');
 %
+%   See also: READPATHS, READIMGHDR, PATHPROPS, EXPORTPATHS, FTRACK.
+%
 %   Author: Kristian Loewe
 
 assert(nargin == 2, 'Unexpected number of input arguments.');
